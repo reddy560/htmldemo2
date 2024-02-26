@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+</head>
+<body>
+    <input type="text" id="t1"/>
+    <button onclick="add()" id="add">add</button>
+<button onclick="update()" style="display: none;" id="update">
+    update</button>
+<div id="con">
+
+</div>
+<script>
+    let a=[]
+    let i=0
+    let ind
+    let tfr=document.getElementById("t1")
+    let conr=document.getElementById("con")
+    let abtn=document.getElementById("add")
+    let ubtn=document.getElementById("update")
+    let add=()=>{
+       
+        a[i]=tfr.value
+        tfr.value=""
+        i++
+      disp()
+        
+  
+    }
+    let disp=()=>{
+        conr.innerHTML=""
+        for(let j=0;j<i;j++)
+       {
+        let newel=document.createElement("li")
+newel.innerHTML=`${a[j]}<button onclick="edit(${j})"}>edit</button>
+<button onclick="del(${j})">delete</button>`
+        conr.appendChild(newel)  
+    }
+        
+    }
+    let edit=(x)=>{
+        tfr.value=a[x]
+        abtn.style.display="none"
+        ubtn.style.display="inline-block"
+        ind=x
+    }
+    let update=()=>{
+        a[ind]=tfr.value
+        abtn.style.display="inline-block"
+        ubtn.style.display="none"
+        tfr.value=""
+        disp()
+    }
+    let del=(x)=>{
+        a.splice(x,1)
+        i--;
+        disp()
+    }
+</script>
+</body>
+</html>
